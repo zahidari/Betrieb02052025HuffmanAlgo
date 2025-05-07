@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,7 +12,7 @@ public class MainClass {
         int counter; // n times vorkommen
     }
 
-    public static ArrayList<String> lesen(String path){
+    public static ArrayList<String> lesenArr(String path){
 
         ArrayList<String> lines = null;
         Path p;
@@ -34,7 +35,26 @@ public class MainClass {
         }
         return lines;
     }
+    public static byte[] lesenByte(String path){
+        Path p;
+        byte[] inputData = null;
+        try{
 
+        }catch (Exception e){
+            e.getStackTrace();
+            System.out.println("path problem");
+        }
+
+        try{
+            p = Path.of(path);
+            inputData = Files.readAllBytes(p);
+        }catch (FileNotFoundException e){
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return inputData;
+    }
 
     public static void printAscii(Object[] zeichen,int flag){
 
@@ -56,10 +76,13 @@ public class MainClass {
     public static void main(String[]args) throws IOException {
 
         //*********************************
-        ArrayList<String> lines = lesen("");
+        //ArrayList<String> lines = lesenArr("");
         //*********************************
+
+
         //byteArray einlesen
-        //zeilenenden speichern
+        byte[] inputArr = null;
+
 
         // iterieren und zahlen der einzelnen char's in jeder Zeile
        for( String s : lines){
